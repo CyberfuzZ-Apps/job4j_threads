@@ -18,7 +18,7 @@ public class ThreadState {
             System.out.println(second.getName() + " " + second.getState());
         }
         System.out.println(first.getName() + " " + first.getState());
-        System.out.println(second.getName() + " " + first.getState());
+        System.out.println(second.getName() + " " + second.getState());
         System.out.println(Thread.currentThread().getName() + " Work is over");
     }
 }
