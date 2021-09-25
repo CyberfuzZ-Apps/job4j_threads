@@ -6,9 +6,7 @@ public class SaveFile {
     private final File file;
 
     public SaveFile(File file) {
-        synchronized (this) {
-            this.file = file;
-        }
+        this.file = file;
     }
 
     public void save(String content) {

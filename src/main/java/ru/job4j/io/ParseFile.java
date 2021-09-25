@@ -7,9 +7,7 @@ public class ParseFile {
     private final File file;
 
     public ParseFile(File file) {
-        synchronized (this) {
-            this.file = file;
-        }
+        this.file = file;
     }
 
     public String content(Predicate<Character> filter) {
