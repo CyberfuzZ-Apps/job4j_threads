@@ -13,12 +13,20 @@ public class SimpleBlockingQueueTest {
         SimpleBlockingQueue<Integer> sbq = new SimpleBlockingQueue<>(capacity);
         Thread producer = new Thread(() -> {
             for (int i = 0; i < capacity; i++) {
-                sbq.offer(i);
+                try {
+                    sbq.offer(i);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         Thread consumer = new Thread(() -> {
             for (int i = 0; i < capacity; i++) {
-                sbq.poll();
+                try {
+                    sbq.poll();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         producer.start();
@@ -33,7 +41,13 @@ public class SimpleBlockingQueueTest {
         int capacity = 3;
         SimpleBlockingQueue<Integer> sbq = new SimpleBlockingQueue<>(capacity);
         Integer i = Integer.MIN_VALUE;
-        Thread producer = new Thread(() -> sbq.offer(i));
+        Thread producer = new Thread(() -> {
+            try {
+                sbq.offer(i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
         producer.start();
         producer.join();
         assertThat(sbq.getSize(), is(1));
@@ -44,7 +58,13 @@ public class SimpleBlockingQueueTest {
         int capacity = 3;
         SimpleBlockingQueue<Integer> sbq = new SimpleBlockingQueue<>(capacity);
         Integer i = Integer.MIN_VALUE;
-        Thread producer = new Thread(() -> sbq.offer(i));
+        Thread producer = new Thread(() -> {
+            try {
+                sbq.offer(i);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
         producer.start();
         producer.join();
         assertThat(sbq.poll(), is(i));

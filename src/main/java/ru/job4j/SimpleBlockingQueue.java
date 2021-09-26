@@ -20,13 +20,9 @@ public class SimpleBlockingQueue<T> {
         return queue.size();
     }
 
-    public void offer(T value) {
+    public void offer(T value) throws InterruptedException {
         while (getSize() == capacity) {
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            this.wait();
         }
         synchronized (this) {
             this.notifyAll();
@@ -34,13 +30,9 @@ public class SimpleBlockingQueue<T> {
         }
     }
 
-    public T poll() {
+    public T poll() throws InterruptedException {
         while (getSize() == 0) {
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+            this.wait();
         }
         synchronized (this) {
             this.notifyAll();
