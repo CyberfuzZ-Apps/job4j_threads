@@ -9,16 +9,14 @@ public class RolColSum {
 
     public static Sums[] sum(int[][] matrix) {
         Sums[] sums = new Sums[matrix.length];
-        int localRowSum = 0;
-        int localColSum = 0;
         for (int i = 0; i < sums.length; i++) {
+            int localRowSum = 0;
+            int localColSum = 0;
             for (int j = 0; j < sums.length; j++) {
                 localRowSum += matrix[i][j];
                 localColSum += matrix[j][i];
             }
             sums[i] = new Sums(localRowSum, localColSum);
-            localRowSum = 0;
-            localColSum = 0;
         }
         return sums;
     }
